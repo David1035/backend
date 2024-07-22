@@ -6,3 +6,8 @@ let intervalo = setInterval(function(){
     }
     i++
 }, 1000)
+
+function hola() {
+    console.log('d')
+}
+hola()
