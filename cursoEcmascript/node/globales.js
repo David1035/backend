@@ -6,8 +6,6 @@ let intervalo = setInterval(function(){
     }
     i++
 }, 1000)
-
-function hola() {
-    console.log('d')
-}
-hola()
+setImmediate(function(){
+    console.log('hola, inmediata ejecución')
+})
