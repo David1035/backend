@@ -9,7 +9,7 @@ function hablar (callbackhablar) {
     setTimeout(function () {
         console.log('Bla bla bla...')
         callbackhablar()
-    }, 1000);
+    }, 2000);
 }
 
 

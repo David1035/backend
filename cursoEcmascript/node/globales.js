@@ -5,7 +5,7 @@ let intervalo = setInterval(function(){
         clearInterval(intervalo)
     }
     i++
-}, 1000)
+}, 2000)
 setImmediate(function(){
     console.log('hola, inmediata ejecución')
 })
