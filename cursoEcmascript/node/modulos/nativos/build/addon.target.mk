@@ -40,13 +40,13 @@ CFLAGS_CC_Debug := \
 	-std=gnu++17
 
 INCS_Debug := \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/include/node \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/src \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/openssl/config \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/openssl/openssl/include \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/uv/include \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/zlib \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/v8/include
+	-I/home/david/.cache/node-gyp/18.20.1/include/node \
+	-I/home/david/.cache/node-gyp/18.20.1/src \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/openssl/config \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/openssl/openssl/include \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/uv/include \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/zlib \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=addon' \
@@ -83,13 +83,13 @@ CFLAGS_CC_Release := \
 	-std=gnu++17
 
 INCS_Release := \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/include/node \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/src \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/openssl/config \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/openssl/openssl/include \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/uv/include \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/zlib \
-	-I/home/me-12966/.cache/node-gyp/18.20.1/deps/v8/include
+	-I/home/david/.cache/node-gyp/18.20.1/include/node \
+	-I/home/david/.cache/node-gyp/18.20.1/src \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/openssl/config \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/openssl/openssl/include \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/uv/include \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/zlib \
+	-I/home/david/.cache/node-gyp/18.20.1/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/hola.o

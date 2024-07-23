@@ -399,7 +399,7 @@
     "v8_trace_maps": 0,
     "v8_use_siphash": 1,
     "want_separate_host_toolset": 0,
-    "nodedir": "/home/me-12966/.cache/node-gyp/18.20.1",
+    "nodedir": "/home/david/.cache/node-gyp/18.20.1",
     "python": "/usr/bin/python3",
     "standalone_static_library": 1
   }
