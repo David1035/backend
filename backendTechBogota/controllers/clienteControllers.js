@@ -48,7 +48,7 @@ exports.buscarCliente = async (req, res) => {
 //funcion modificar un cliente
 exports.modificarClientes = async (req, res) => {
     try {
-        const clientes = await Cliente.findOneAndUpdate({_id: req.params.id}, req.body);
+        const clientes = await Cliente.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
         if(!clientes){
             res.status(404).send('cliente no encontrado');
         } else{

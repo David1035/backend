@@ -1,6 +1,7 @@
 const express = require('express');
 const conectarDB = require('../configdb/db');
 const cors = require('cors');
+const path = require('path')
 
 const app = express();
 const port = 5000;
@@ -15,12 +16,20 @@ app.use(express.json());
 app.use('/api/clientes', require('../routes/clientesRutas'))
 app.use('/api/proveedores', require('../routes/proveedoresRutas'))
 
+// Servir archivos estáticos desde la carpeta "public"
+app.use(express.static(path.join(__dirname, 'public')));
 
-// RUTA DESDE LA WEB
 
+
+// Ruta desde la web
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+/*
 app.get('/', (req, res) => {
     res.send('Bienvenidos estamos conectados')
-})
+})*/
 
 app.listen(port, () => console.log('Estamos conectados desde el servidor'))
 
