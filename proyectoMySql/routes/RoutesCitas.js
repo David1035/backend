@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCitas, getCita, agregarCitas, modificarCita, eliminarCita } from '../controllers/CitasControllers';
+import { getAllCitas, getCita, agregarCitas, modificarCita, eliminarCita } from '../controllers/CitasControllers.js';
 
 const router = express.Router();
 
@@ -9,3 +9,6 @@ router.get('/:id', getCita);
 router.post('/', agregarCitas);
 router.put('/:id', modificarCita);
 router.delete('/:id', eliminarCita);
+
+
+export default router;

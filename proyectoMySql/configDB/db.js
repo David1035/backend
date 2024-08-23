@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 
-const conectarDB = new Sequelize('database_citas', 'root','',{
+const conectarDB = new Sequelize('BDcitas', 'root','',{
     host:'localhost',
-    dialect: 'mssql'
+    dialect: 'mysql',
 });
 
 export default conectarDB;

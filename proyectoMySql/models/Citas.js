@@ -1,8 +1,8 @@
 import conectarDB from '../configDB/db.js';
-import { DataTypes } from 'sequelize';;
+import { DataTypes } from 'sequelize';
 
 const Citas = conectarDB.define('citas', {
-    nombre_medico:
+    n_medico:
     {
         type: DataTypes.STRING,
         allowNull: false
@@ -24,7 +24,7 @@ const Citas = conectarDB.define('citas', {
     {
         type: DataTypes.STRING,
         allowNull: false
-    },
+    }
 
 })
 

@@ -1,4 +1,4 @@
-import Citas from "../models/Citas";
+import Citas from "../models/Citas.js";
 
 // metodos o funciones CRUD
 
@@ -6,6 +6,7 @@ import Citas from "../models/Citas";
 export const getAllCitas = async (req, res) => {
     try {
         const citas = await Citas.findAll();
+        res.json(citas);
     } catch (error) {
         res.json({msg: error.message})
     }
@@ -26,7 +27,7 @@ export const getCita = async (req, res) => {
 // funciones o método agregar cita
 export const agregarCitas = async (req, res) => {
     try {
-        await Citas.create(req, res);
+        await Citas.create(req.body);
         res.json({msg: 'se agrego una cita'})
 
     } catch (error) {
