@@ -1,14 +1,35 @@
-const fechaActual = new Date()
-const fechaAyer = new Date(2024,9,16, 21,30,0)
+let horaI = ''
+let horaF = ''
 
-console.log(fechaActual.toLocaleDateString())
-console.log(fechaActual.toLocaleTimeString('es-CO', { hour12: false}))
-console.log(fechaAyer.toLocaleTimeString('es-CO', { hour12: false})) 
+function obtenerFechaHoraColombia() {
+    // Obtener la fecha y hora actual en la zona horaria de Colombia
+    let fechaHoraColombia = new Date().toLocaleString('es-CO', {
+        timeZone: 'America/Bogota',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false // Usar formato 24 horas
+    });
 
-function restarMinutos(fechaInicial, fechaFinal) {
-    let diferenciaMilisegundos = fechaInicial.getTime() - fechaFinal.getTime();
-    let convertidoMinutos = Math.floor(diferenciaMilisegundos / 60000)
-    return convertidoMinutos
+    return fechaHoraColombia;
+
 }
 
-console.log(restarMinutos(fechaActual, fechaAyer))
+function probandoCallBack(inicia, miCallback) {
+    setTimeout(() => {
+        let fecha = new Date()
+        horaI = obtenerFechaHoraColombia()
+        console.log(fecha, horaI, inicia)
+        miCallback()
+    })
+}
+
+probandoCallBack('David', () => {
+    setTimeout(() => {
+        horaF = obtenerFechaHoraColombia()
+        console.log(horaF)
+    },3000)
+})
