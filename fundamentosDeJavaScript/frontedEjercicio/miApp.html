@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Publicaciones</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>Gestión de Publicaciones</h1>
+    </header>
+
+    <!-- Formulario para agregar una nueva publicación -->
+    <section id="new-post">
+        <h2>Agregar una nueva publicación</h2>
+        <form>
+            <div class="form-control">
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-control">
+                <label for="body">Contenido:</label>
+                <textarea id="body" name="body" rows="4" required></textarea>
+            </div>
+            <button type="submit">Agregar Publicación</button>
+        </form>
+    </section>
+
+    <!-- Botón para obtener publicaciones disponibles -->
+    <section id="available-posts">
+        <h2>Publicaciones Disponibles</h2>
+        <button>Obtener Publicaciones</button>
+    </section>
+
+    <!-- Contenedor para las publicaciones -->
+    <section id="posts-container" class="posts"></section>
+
+    <script src="app.js"></script>
+</body>
+</html>
