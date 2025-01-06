@@ -1,23 +1,46 @@
-<!DOCTYPE html>
+                           
+                           <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testing</title>
+    <style>
+        .main {
+            background-color: bisque;
+            font-size: 16px;
+        }
+        .main-menu {
+            color:yellowgreen;
+        }
+        .visible {
+            display: block;
+        }
+        .invisible {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1 id="app-title">Soy el header de esta app</h1>
-        <menu>
-            <ul>
+        <menu class="main">
+            <p>Algo de texto de ejemplo en Menu</p>
+            <ul id="parent">
                 <li><a href="#"></a>Home</li>
                 <li class="menu-items"><a href="#">About me</a></li>
                 <li class="menu-items"><a href="#">Blogs</a></li>
                 <li class="menu-items"><a href="#">Contact</a></li>
             </ul>
+            
         </menu>
+        <section>
+            <p>este es un familiar</p>
+        </section>
     </header>
     <main>
+        <input id="input-id" class="input-class" type="text" value="Nombre">
+        
         <section>
             <p>Soy el texto principal de esta App</p>
         </section>
