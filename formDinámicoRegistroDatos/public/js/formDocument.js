@@ -63,31 +63,48 @@ btnEnviar.addEventListener('click', function(event) {
 })
 
 
-function insertarTexto() {
+async function insertarTexto() {
     const modoDeTrabajo = document.getElementById('modoDeTrabajo')
     const totalTiempotext = document.getElementById('totalTiempoText')
-    if(modoDeTrabajo.value === 'N2') {
-        const totalPrueba = parseInt(localStorage.getItem('n2'))
-        const counter = parseInt(localStorage.getItem('counterN2'))
-        if(totalPrueba > 0) {
-            aht = `AHT de N2: --- ${(totalPrueba/counter).toFixed()}, Min ${((totalPrueba/60)/counter).toFixed(1)}`
+    let tiempoTotal = 0;
+    let counter = 0;
+
+    try {
+        // realizar la solicitud a la Api para obtener los registros 
+        const response = fetch('hppt://localhost:5000/api/forms')
+        if(!response) {
+            throw new ('Error al obtener los datos ', response.statusText)
+        }
+
+        const data = (await response).json()
+
+        //Filtrar datos según el modo de trabajo seleccionado N1 o N2
+        if(modoDeTrabajo.value === 'N2'){
+            const registrosN2 = data.filter(registro => registro.modoDeTrabajo === 'N2')
+            tiempoTotal = registrosN2.reduce((acc, curr) => acc + curr.tiempoPromedio, 0) // sumar el tiempo promedio
+            counter = registrosN2.length() // contar el número de registros
+        } else {
+            const registrosN1 = data.filter(registro => registro.modoDeTrabajo === 'N1')
+            tiempoTotal = registrosN1.reduce((acc, curr) => acc + curr.tiempoPromedio, 0) // sumar el tiempo promedio
+            counter = registrosN1.length() // contar el número de registros
+        }
+
+        //calcular AHT
+        if(tiempoTotal > 0 && counter > 0){
+            const promedio = tiempoTotal / counter;
+            const aht = `AHT de ${modoDeTrabajo.value}: --- ${promedio.toFixed()}, Min ${((promedio / 60).toFixed(1))}`;
             totalTiempotext.textContent = aht;
-            } else {
-                totalTiempotext.textContent = '0'
-            }
-    } else {
-        const totalPrueba = parseInt(localStorage.getItem('n1'))
-        const counter = parseInt(localStorage.getItem('counterN1'))
-        if(totalPrueba > 0) {
-            aht = `AHT n1: --- ${(totalPrueba/counter).toFixed()}, Min ${((totalPrueba/60)/counter).toFixed(1)}`
-            totalTiempotext.textContent = aht;
-            } else {
-                totalTiempotext.textContent = '0'
-            }
+        } else {
+            totalTiempotext.textContent = '0';
+        }
+    } catch (error) {
+        console.error('Error al insertar texto:', error);
+        totalTiempotext.textContent = 'Error al cargar datos';
     }
-    
 }
 insertarTexto()
+
+//
 function insertarTextDinamico() {
     const modoDeTrabajo = document.getElementById('modoDeTrabajo')
     modoDeTrabajo.addEventListener('change' , () => { insertarTexto()})
