@@ -56,9 +56,9 @@ btnEnviar.addEventListener('click', function(event) {
         btnInicio.disabled = false;
     } 
     btnInicio.focus()
-    descargarDatos()
+    //descargarDatos()
     insertarTexto()
-    enviarDatosAlServidor()
+    //enviarDatosAlServidor()
     limpiarDatosForm()
     stopCounter()
 })
@@ -143,11 +143,12 @@ async function enviarDatosAlServidor () {
     const modo = document.getElementById('modo-back');
     const modoDeTrabajo = document.getElementById('modoDeTrabajo');
     const actualizacionDeDatos = `¿Actualicé los datos? ${actualizacion.value}, ¿Brindé guion de agendamiento? ${guion.value}, ¿Realicé verificación de modo back? ${modo.value}`
+    let plantillaCreada;
 
     if(horarioB2B.value === 'si'){
-        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}. Horario B2B activo. Los datos del representante encargado de atender la visita se especifican a continuación: nombre: ${atiendeB2b.value}, celular: ${celularB2b.value}, días de atención: ${diasAtencion.value}, en el horario: ${horarioAtencion.value}, Documento o Nit: ${documento.value}`;
+        plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}. Horario B2B activo. Los datos del representante encargado de atender la visita se especifican a continuación: nombre: ${atiendeB2b.value}, celular: ${celularB2b.value}, días de atención: ${diasAtencion.value}, en el horario: ${horarioAtencion.value}, Documento o Nit: ${documento.value}`;
     } else {
-        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}, Documento: ${documento.value}, Cel: ${cel.value}`;
+        plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}, Documento: ${documento.value}, Cel: ${cel.value}`;
     }
     const data = {
         idLlamada: idLlamada.value,
@@ -162,7 +163,7 @@ async function enviarDatosAlServidor () {
     }
 
     try {
-        const response = await fetch('http://localhost:5000/api/forms/', {
+        const response = await fetch('http://localhost:5000/api/forms', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', //define el tipo de contenido

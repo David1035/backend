@@ -24,6 +24,6 @@ app.use('/api', apiRoutes) // api routes
 // crea la bd de datos, si no existe
 sequelize.sync({ force: false })
     .then(() => {
-        console.log('Base de datos creada')
+        console.log('Base de datos creada con éxito')
     })
     .catch((err) => console.error('error al sincronizar db ', err))
