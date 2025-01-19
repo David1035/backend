@@ -1,5 +1,6 @@
 let horaInicial;
 let horaFinal;
+let tiempoTotal;
 let hora;
 let fecha;
 // Extensión para manejar el contador con alarmas
@@ -57,40 +58,11 @@ btnEnviar.addEventListener('click', function(event) {
     btnInicio.focus()
     descargarDatos()
     insertarTexto()
+    enviarDatosAlServidor()
     limpiarDatosForm()
     stopCounter()
 })
 
-function calcularTiempo() {
-    horaFinal = new Date();
-    console.log(horaFinal.getHours())
-    const modoDeTrabajo = document.getElementById('modoDeTrabajo')
-
-    if(modoDeTrabajo.value === 'N2') {
-        const diferenciaMilisegundos = horaFinal - horaInicial;
-        const diferenciaSegundos = Math.floor(diferenciaMilisegundos / 1000);
-
-        let tiempoTotal = parseInt(localStorage.getItem('n2')) || 0;
-        tiempoTotal += diferenciaSegundos;
-        localStorage.setItem('n2', tiempoTotal)
-
-        let counter = parseInt(localStorage.getItem('counterN2') || 0);
-        counter++;
-        localStorage.setItem('counterN2', counter)
-    } else {
-        const diferenciaMilisegundos = horaFinal - horaInicial;
-        const diferenciaSegundos = Math.floor(diferenciaMilisegundos / 1000);
-
-        let tiempoTotal = parseInt(localStorage.getItem('n1')) || 0;
-        tiempoTotal += diferenciaSegundos;
-        localStorage.setItem('n1', tiempoTotal)
-
-        let counter = parseInt(localStorage.getItem('counterN1') || 0);
-        counter++;
-        localStorage.setItem('counterN1', counter)
-    }
-    
-}
 
 function insertarTexto() {
     const modoDeTrabajo = document.getElementById('modoDeTrabajo')
@@ -144,12 +116,71 @@ function copiarDatos () {
     const cel = document.getElementById('celular')
 
     if(horarioB2B.value === 'si'){
-        const plantillaCreada = `Observaciones ${observaciones.value}, Id de la llamada ${idLlamada.value}, prueba SMNET: ${smnet.value}, tecnología: ${tecnology.value}, tipo de servicio: ${tipoServicio.value}, naturaleza del problema: ${naturaleza.value}. Horario B2B activo. Los datos del representante encargado de atender la visita se especifican a continuación: nombre: ${atiendeB2b.value}, celular: ${celularB2b.value}, días de atención: ${diasAtencion.value}, en el horario: ${horarioAtencion.value}, documento: ${documento.value}`;
+        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}. Horario B2B activo. Los datos del representante encargado de atender la visita se especifican a continuación: nombre: ${atiendeB2b.value}, celular: ${celularB2b.value}, días de atención: ${diasAtencion.value}, en el horario: ${horarioAtencion.value}, Documento: ${documento.value}`;
         return navigator.clipboard.writeText(plantillaCreada)
     } else {
-        const plantillaCreada = `Observaciones ${observaciones.value}, Id de la llamada ${idLlamada.value}, prueba SMNET: ${smnet.value}, tecnología: ${tecnology.value}, tipo de servicio: ${tipoServicio.value}, naturaleza del problema: ${naturaleza.value}, documento: ${documento.value}, cel: ${cel.value}`;
+        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}, Documento: ${documento.value}, Cel: ${cel.value}`;
         return navigator.clipboard.writeText(plantillaCreada)
+    }
+}
+
+async function enviarDatosAlServidor () {
+    const smnet = document.getElementById('smnet')
+    const observaciones = document.getElementById('observaciones')
+    const name = document.getElementById('name')
+    const tecnology = document.getElementById('tecnology');
+    const tipoServicio = document.getElementById('tipoServicio')
+    const naturaleza = document.getElementById('naturaleza')
+    const horarioB2B = document.getElementById('horario-b2b')
+    const atiendeB2b = document.getElementById('atiende-b2b')
+    const celularB2b = document.getElementById('celular-b2b')
+    const diasAtencion = document.getElementById('dias-atencion')
+    const horarioAtencion = document.getElementById('horario-atencion')
+    const documento = document.getElementById('documentoIdentidad')
+    const cel = document.getElementById('celular')
+    const actualizacion = document.getElementById('actualizacion-datos');
+    const guion = document.getElementById('guion-agendamiento');
+    const modo = document.getElementById('modo-back');
+    const modoDeTrabajo = document.getElementById('modoDeTrabajo');
+    const actualizacionDeDatos = `¿Actualicé los datos? ${actualizacion.value}, ¿Brindé guion de agendamiento? ${guion.value}, ¿Realicé verificación de modo back? ${modo.value}`
+
+    if(horarioB2B.value === 'si'){
+        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}. Horario B2B activo. Los datos del representante encargado de atender la visita se especifican a continuación: nombre: ${atiendeB2b.value}, celular: ${celularB2b.value}, días de atención: ${diasAtencion.value}, en el horario: ${horarioAtencion.value}, Documento o Nit: ${documento.value}`;
+    } else {
+        const plantillaCreada = `Observaciones: ${observaciones.value}, Id de la llamada: ${idLlamada.value}, SMNET: ${smnet.value}, Tecnología: ${tecnology.value}, Tipo de servicio: ${tipoServicio.value}, Naturaleza: ${naturaleza.value}, Documento: ${documento.value}, Cel: ${cel.value}`;
+    }
+    const data = {
+        idLlamada: idLlamada.value,
+        name: name.value,
+        documentoIdentidad: documento.value,
+        observaciones: plantillaCreada,
+        actualizacionDeDatos: actualizacionDeDatos,
+        fecha: fecha,
+        hora: hora,
+        tiempoPromedio: tiempoTotal,
+        tipoPlantilla: modoDeTrabajo.value
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/api/forms/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', //define el tipo de contenido
+            },
+            body: JSON.stringify(data)
+        })
+
+        //Manejo de la respuesta del servidor
+        if(response.ok) {
+            const result = await response.json();
+            console.log(`Datos enviados con éxito ${result}`)
+        } else {
+            console.log(`Error en la solicitud ${response.statusText}`)
         }
+    } catch (error) {
+        console.error(`Error al enviar los datos al servidor ${error}`)
+    }
+
 }
 
 function limpiarDatosForm () {
@@ -235,6 +266,38 @@ function descargarDatos() {
     document.body.appendChild(enlace);
     enlace.click();
     document.body.removeChild(enlace);
+}
+
+
+function calcularTiempo() {
+    horaFinal = new Date();
+    console.log(horaFinal.getHours())
+    const modoDeTrabajo = document.getElementById('modoDeTrabajo')
+
+    if(modoDeTrabajo.value === 'N2') {
+        const diferenciaMilisegundos = horaFinal - horaInicial;
+        const diferenciaSegundos = Math.floor(diferenciaMilisegundos / 1000);
+
+        tiempoTotal = parseInt(localStorage.getItem('n2')) || 0;
+        tiempoTotal += diferenciaSegundos;
+        localStorage.setItem('n2', tiempoTotal)
+
+        let counter = parseInt(localStorage.getItem('counterN2') || 0);
+        counter++;
+        localStorage.setItem('counterN2', counter)
+    } else {
+        const diferenciaMilisegundos = horaFinal - horaInicial;
+        const diferenciaSegundos = Math.floor(diferenciaMilisegundos / 1000);
+
+        tiempoTotal = parseInt(localStorage.getItem('n1')) || 0;
+        tiempoTotal += diferenciaSegundos;
+        localStorage.setItem('n1', tiempoTotal)
+
+        let counter = parseInt(localStorage.getItem('counterN1') || 0);
+        counter++;
+        localStorage.setItem('counterN1', counter)
+    }
+    
 }
 
 // Función para reproducir un sonido genérico
