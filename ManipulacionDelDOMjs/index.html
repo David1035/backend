@@ -4,71 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
-    <style>
-        textarea {
-      width: 60%; /* Ancho completo */
-      min-height: 40px; /* Altura inicial */
-      max-height: 400px; /* Altura máxima permitida */
-      font-size: 16px;
-      padding: 2px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      text-align: center;
-      overflow: hidden; /* Evita barras de desplazamiento */
-      resize: none; /* Desactiva el ajuste manual del tamaño */
-    }
-    button:focus {
-        outline: 2px solid blue; /* Estilo para indicar el foco */
-    }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <main>
-        <form id="myForm">
-            <button id="inicioBtn">Inicio</button>
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Correo</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="autoGrow">Observaciones</label>
-            <textarea id="autoGrow" placeholder="Escribe algo aquí..."></textarea>
-
-
-            <button id="copiar">Copiar Datos</button>
-            <button type="submit" id="submit">Submit</button>
-
+    <div id="theme-toggle">
+        <button id="toggle-theme-btn">Toggle Theme</button>
+    </div>
+    <div id="task-manager">
+        <h1>Task Manager</h1>
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="Enter a nuw task" required>
+            <button type="submit">Add Task</button>
         </form>
-    </main>    
-
-    <script>
-        const copiarBtn = document.getElementById('copiar');
-        const submitBtn = document.getElementById('submit');
-        const inicioBtn = document.getElementById('inicioBtn');
-
-        const textarea = document.querySelector('#autoGrow')
-        textarea.addEventListener('input', function(){
-            this.style.height = 'auto';
-            this.style.height = this.scrollHeight + 'px';
-        })
-
-        const copiar = document.querySelector('#copiar')
-        copiar.addEventListener('click', function(event){
-            event.preventDefault()
-            const nombre = document.querySelector('#name').value
-            const correo = document.querySelector('#email').value
-            const observaciones = document.querySelector('#autoGrow').value 
-
-            const totalTexto = `Nombre: ${nombre} Correo: ${correo} Observaciones: ${observaciones}`
-            console.log(totalTexto)
-            navigator.clipboard.writeText(totalTexto)
-            submitBtn.focus()
-        })
-
-        submitBtn.addEventListener('click', function(){
-            inicioBtn.focus()
-        })
-    </script>
+        <ul id="task-list">
+            <li>
+                Task content
+                <span class="delete-btn">❌</span>
+                <span class="edit-btn">✏️</span>
+            </li>
+        </ul>
+    </div>
 </body>
+<script src="app.js"></script>
 </html>
