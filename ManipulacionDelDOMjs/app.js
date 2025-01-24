@@ -1,5 +1,8 @@
+
 const taskForm = document.getElementById('task-form');
 const taskList = document.getElementById('task-list');
+
+loadTask()
 
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -8,6 +11,7 @@ taskForm.addEventListener('submit', (event) => {
     console.log(task)
     if(task){
         taskList.append(createTaskElement(task))
+        storeTaskLocalStorage(task)
         taskInput.value = ''
     }
 })
@@ -48,5 +52,24 @@ function editTask (taskItem) {
     const newTask = prompt('Editar la tarea: ', taskItem.firstChild.textContent)
     if(newTask !== null){
         taskItem.firstChild.textContent = newTask;
+        updateLocalStorage()
     }
+}
+
+function storeTaskLocalStorage (task) {
+    let tasks = JSON.parse(localStorage.getItem('tasks' )) || [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+function loadTask() {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || []; // Array vacío como valor predeterminado
+    tasks.forEach((task) => {
+        taskList.appendChild(createTaskElement(task));
+    });
+}
+
+function updateLocalStorage(){
+    const tasks = Array.from(taskList.querySelectorAll('li')).map((li) => li.firstChild.textContent)
+    localStorage.setItem('tasks', JSON.stringify(tasks))
 }
