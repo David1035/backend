@@ -116,3 +116,17 @@ function updateLocalStorage() {
     const tasks = Array.from(taskList.querySelectorAll('li')).map((li) => li.firstChild.textContent); // Extraer el texto de las tareas del DOM
     localStorage.setItem('tasks', JSON.stringify(tasks)); // Guardar las tareas en localStorage
 }
+
+const themeToggleButton = document.getElementById('toggle-theme-btn');
+const currenTheme = localStorage.getItem('theme')
+
+themeToggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme')
+
+    const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+})
+
+if(currenTheme === 'dark') {
+    document.body.classList.add('dark-theme')
+}
