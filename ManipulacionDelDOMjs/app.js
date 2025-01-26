@@ -117,6 +117,7 @@ function updateLocalStorage() {
     localStorage.setItem('tasks', JSON.stringify(tasks)); // Guardar las tareas en localStorage
 }
 
+//LocalStorage para cambiar tema de forma dinámica con JS
 const themeToggleButton = document.getElementById('toggle-theme-btn');
 const currenTheme = localStorage.getItem('theme')
 
