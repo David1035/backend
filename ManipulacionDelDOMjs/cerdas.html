@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerdas Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            box-sizing: border-box;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+        li {
+            background: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-info {
+            max-width: 80%;
+        }
+        .complete-btn {
+            background-color: #28a745;
+            width: 100px;
+        }
+        .complete-btn:hover {
+            background-color: #218838;
+        }
+        .task-date {
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Manager control Cerdas</h1>
+    <form id="task-form">
+        <label for="date">Fecha de Monte:</label>
+        <input type="date" id="date" required>
+
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" placeholder="Nombre de la tarea" required>
+
+        <label for="observations">Observaciones:</label>
+        <textarea id="observations" placeholder="Agrega observaciones..."></textarea>
+
+        <button type="submit">Agregar Tarea</button>
+    </form>
+
+    <h2>Lista de Tareas</h2>
+    <ul id="task-list"></ul>
+
+    <script>
+        // Generar un identificador único
+        function generateId() {
+            return '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        const taskForm = document.getElementById('task-form');
+        const taskList = document.getElementById('task-list');
+
+        taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const name = document.getElementById('name').value;
+            const observations = document.getElementById('observations').value;
+
+            if (date && name) {
+                const startDate = new Date(date);
+                const finalDate = new Date(startDate);
+                finalDate.setDate(finalDate.getDate() + 114);
+
+                const task = {
+                    id: generateId(), // Identificador único
+                    startDate: startDate.toISOString().split('T')[0],
+                    finalDate: finalDate.toISOString().split('T')[0],
+                    name,
+                    observations
+                };
+
+                saveTask(task);
+                renderTasks();
+                taskForm.reset();
+            }
+        });
+
+        function saveTask(task) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(task);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function loadTasks() {
+            return JSON.parse(localStorage.getItem('tasks')) || [];
+        }
+
+        function getColorBasedOnDate(finalDate) {
+            const today = new Date();
+            const targetDate = new Date(finalDate);
+            const diffDays = Math.floor((targetDate - today) / (1000 * 60 * 60 * 24));
+
+            if (diffDays > 30) {
+                return 'lightgreen'; // Muy lejano
+            } else if (diffDays > 7) {
+                return 'green'; // Cerca
+            } else {
+                return 'green'; // Muy cerca o en la fecha
+            }
+        }
+
+        function renderTasks() {
+            const tasks = loadTasks();
+
+            tasks.sort((a, b) => new Date(a.finalDate) - new Date(b.finalDate));
+
+            taskList.innerHTML = '';
+            tasks.forEach((task) => {
+                const li = document.createElement('li');
+
+                const taskInfo = document.createElement('div');
+                taskInfo.className = 'task-info';
+                taskInfo.innerHTML = `
+                    Cerda: <strong>${task.name}</strong>
+                    <br>Fecha de Monte: ${task.startDate}
+                    <br>Fecha de Parto: <span class="task-date" style="background-color: ${getColorBasedOnDate(task.finalDate)};">${task.finalDate}</span>
+                    <br>Observaciones: ${task.observations || 'N/A'}
+                `;
+
+                const completeBtn = document.createElement('button');
+                completeBtn.textContent = 'Cumplir';
+                completeBtn.className = 'complete-btn';
+                completeBtn.addEventListener('click', () => {
+                    deleteTask(task.id); // Usar el id único para eliminar
+                });
+
+                li.append(taskInfo, completeBtn);
+                taskList.appendChild(li);
+            });
+        }
+
+        function deleteTask(taskId) {
+            let tasks = loadTasks();
+            tasks = tasks.filter((task) => task.id !== taskId); // Filtrar por id único
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        renderTasks();
+    </script>
+</body>
+</html>
