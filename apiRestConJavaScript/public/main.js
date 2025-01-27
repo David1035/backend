@@ -1,5 +1,6 @@
 const nameSpan = document.getElementById('nameSpan');
 const ageSpan = document.getElementById('ageSpan');
+const actualizarBtn = document.getElementById('actualizar-btn')
 const URL = 'https://api.thecatapi.com/v1/images/search';
 
 /*async function getPerson() {
@@ -33,4 +34,5 @@ async function getGatitos () {
     }
 }
 
+actualizarBtn.addEventListener('click', getGatitos)
 getGatitos()
