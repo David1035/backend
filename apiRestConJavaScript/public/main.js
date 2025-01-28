@@ -2,26 +2,21 @@ const nameSpan = document.getElementById('nameSpan');
 const ageSpan = document.getElementById('ageSpan');
 const actualizarBtn = document.getElementById('actualizar-btn')
 const URL = 'https://api.thecatapi.com/v1/images/search';
+const API_URL = 'http://localhost:5000/api/forms';
 
-/*async function getPerson() {
-    const response = await fetch(URL)
-    const data = await response.json();
-    const person = data[0];
-    console.log(person)
-    nameSpan.textContent = person.name;
-    ageSpan.textContent = person.documentoIdentidad;
+async function definirHora () {
+    try {
+        const response = await fetch(API_URL)
+        const data = await response.json()
+        const fechaCreada = new Date(data[0].createdAt)
+        const hora = new Date()
+        console.log(fechaCreada)
+        console.log(hora)
+    } catch (error) {
+        
+    }
 }
-
-getPerson()*/
-
-/*
-fetch(URL)
-    .then(hola => hola.json())
-    .then(data => {
-        nameSpan.textContent = data[0].url;
-        ageSpan.src = data[0].url;
-        ageSpan.style.width = '700px';
-    }) */
+definirHora()
 
 async function getGatitos () {
     try {
