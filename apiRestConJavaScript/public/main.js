@@ -35,4 +35,4 @@ async function getGatitos () {
 }
 
 actualizarBtn.addEventListener('click', getGatitos)
-getGatitos()
+getGatitos()    
