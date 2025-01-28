@@ -28,7 +28,7 @@ async function getGatitos () {
         const response = await fetch(URL);
         const data = await response.json()
         nameSpan.textContent = data[0].url;
-        ageSpan.src = data[0].url;
+        ageSpan.src = data[0].url === 0 ? '' : data[0].url;
     } catch (error) {
         console.error('se presenta error al recibir los datos ')
     }
