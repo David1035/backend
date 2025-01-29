@@ -7,6 +7,32 @@
 </head>
 <body>
     <h1>Consultar datos a mi API</h1> 
+
+    <section id="randomMichis">
+
+        <h2>Gatitos Aleatorios</h2>
+
+        <article>
+            <img id="img1" width="150" alt="Foto de gatito aleatorio">
+            <button type="button">Guardar michi en favoritos</button>
+        </article>
+        <article>
+            <img id="img2" width="150" alt="Foto de gatito aleatorio">
+            <button type="button">Guardar michi en favoritos</button>
+        </article>
+        <article>
+            <img id="img3" width="150" alt="Foto de gatito aleatorio">
+            <button type="button">Guardar michi en favoritos</button>
+        </article>
+
+        <button onclick="reload()">Recargar</button>
+    </section>
+
+    <section id="favoritesMichis">
+        <h3>Michis Favoritos</h3>
+        <button>sacar el michi de favoritos</button>
+    </section>
+
     <button id="actualizar-btn">Actualizar Imagen</button>
     <h2 id="nameSpan"></h2>
     <img alt="imagen" id="ageSpan">
