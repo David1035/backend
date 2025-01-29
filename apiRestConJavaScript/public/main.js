@@ -2,9 +2,8 @@
 
 const nameSpan = document.getElementById('nameSpan');
 const ageSpan = document.getElementById('ageSpan');
-const I_AM_KEY = 'api_key=live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj'
 const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=2';
-const API_URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites?';
+const API_URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites';
 const spanError = document.getElementById('spanError')
 
 
@@ -27,7 +26,8 @@ async function getLoadMichis () {
 async function getFavoritesMichis () {
     try {
         const response = await fetch(API_URL_FAVORITES, {
-            headers: { "x-api-key": I_AM_KEY },
+            method: 'GET',
+            headers: { "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj' },
         });
         console.log(response)
         if(response.status !== 200) {
