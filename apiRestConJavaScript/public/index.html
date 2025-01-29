@@ -11,21 +11,18 @@
     <section id="randomMichis">
 
         <h2>Gatitos Aleatorios</h2>
+        <span id="spanError"></span>
 
         <article>
             <img id="img1" width="150" alt="Foto de gatito aleatorio">
-            <button type="button">Guardar michi en favoritos</button>
+            <button type="button" onclick="saveFavourite()">Guardar michi en favoritos</button>
         </article>
         <article>
             <img id="img2" width="150" alt="Foto de gatito aleatorio">
-            <button type="button">Guardar michi en favoritos</button>
-        </article>
-        <article>
-            <img id="img3" width="150" alt="Foto de gatito aleatorio">
-            <button type="button">Guardar michi en favoritos</button>
+            <button type="button" onclick="saveFavourite()">Guardar michi en favoritos</button>
         </article>
 
-        <button onclick="reload()">Recargar</button>
+        <button onclick="getLoadMichis()">Recargar</button>
     </section>
 
     <section id="favoritesMichis">
@@ -33,9 +30,6 @@
         <button>sacar el michi de favoritos</button>
     </section>
 
-    <button id="actualizar-btn">Actualizar Imagen</button>
-    <h2 id="nameSpan"></h2>
-    <img alt="imagen" id="ageSpan">
 
     
     <script src="main.js"></script>
