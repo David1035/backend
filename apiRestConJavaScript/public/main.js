@@ -47,6 +47,7 @@ async function saveFavourite() {
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST', 
         headers: {
+            "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
