@@ -17,27 +17,31 @@ async function getLoadMichis () {
 
         img1.src = data[0].url
         img2.src = data[1].url
+        console.log('data')
+        console.log(data)
 
     } catch (error) {
         console.error('se presenta error al recibir los datos ')
     }
 }
 
-async function getFavoritesMichis () {
+async function getFavouriteMichis () {
     try {
         const response = await fetch(API_URL_FAVORITES, {
             method: 'GET',
             headers: { "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj' },
         });
-        console.log(response)
+        const data = await response.json()
+
         if(response.status !== 200) {
             spanError.innerHTML = 'Se presentó un error ' + response.status + data.message
+        } else {
+            data.forEach(element => {
+                element.image.url
+                console.log(element)
+            });
         }
-        const data = await response.json()
-        console.log('Favorites')
-        console.log(data)
-
-
+        console.log("🐱 Favoritos obtenidos:", data);
     } catch (error) {
         console.error('no carga datos')
     }
@@ -47,16 +51,25 @@ async function saveFavourite() {
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST', 
         headers: {
-            "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj'
         },
         body: JSON.stringify({
-            image_id: 'adz'
+            image_id: '33q'
         })
     })
-    console.log('save')
-    console.log(res)
+    const data = await res.json();
+
+        if (!res.ok) {
+            console.error(`Error ${res.status}:`, data);
+            return;
+        }
+
+        console.log("✅ Imagen guardada como favorita:", data);
 }
    
-getFavoritesMichis()
-saveFavourite()
+getFavouriteMichis()
+const btn1 = document.getElementById('btn1')
+btn1.addEventListener('click', () => {
+    saveFavourite()
+})
