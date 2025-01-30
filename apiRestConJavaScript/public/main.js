@@ -39,10 +39,16 @@ async function getFavouriteMichis () {
 
         if(response.status !== 200) {
             spanError.innerHTML = 'Se presentó un error ' + response.status + data.message
+            
         } else {
+            const section = document.getElementById('favouriteMichis')
+            section.innerHTML = "";
+            const h2 = document.createElement('h2')
+            const h2Text = document.createTextNode('Michis Favoritos')
+            h2.appendChild(h2Text)
+            section.appendChild(h2)
             data.forEach(element => {
                 element.image.url
-                const section = document.getElementById('favouriteMichis')
                 const articule = document.createElement('article')
                 const img = document.createElement('img')
                 const btn = document.createElement('button')
@@ -81,6 +87,7 @@ async function saveFavourite(id) {
             console.error(`Error ${res.status}:`, data);
             return;
         }
+        getFavouriteMichis()
 
         console.log("✅ Imagen guardada como favorita:", data);
 }
@@ -97,6 +104,7 @@ async function deleteFavouriteMiche(id) {
         spanError = document.getElementById('spanError')
         spanError.innerHTML = 'Se presentó un error ' + res.status + data.message
     } else {
+        getFavouriteMichis()
         console.log("✅ Imagen eliminada como favorita:", data);
     }  
 
