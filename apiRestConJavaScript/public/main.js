@@ -49,6 +49,7 @@ async function getFavouriteMichis () {
                 const btnText = document.createTextNode('sacar al michi de favoritos')
 
                 btn.appendChild(btnText)
+                btn.onclick = () => deleteFavouriteMiche(element.id)
                 img.src = element.image.url
                 img.width = '150'
                 articule.appendChild(img)
@@ -83,5 +84,24 @@ async function saveFavourite(id) {
 
         console.log("✅ Imagen guardada como favorita:", data);
 }
-   
+
+async function deleteFavouriteMiche(id) {
+    const res = await fetch(`${API_URL_FAVORITES}/${id}`, {
+        method: 'delete', 
+        headers: {
+            "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj'
+        },
+    })
+    const data = res.json
+    if(res.status !== 200) {
+        spanError = document.getElementById('spanError')
+        spanError.innerHTML = 'Se presentó un error ' + res.status + data.message
+    } else {
+        console.log("✅ Imagen eliminada como favorita:", data);
+    }  
+
+    
+}
+
+
 getFavouriteMichis()
