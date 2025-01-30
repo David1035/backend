@@ -14,9 +14,13 @@ async function getLoadMichis () {
         const data = await response.json()
         const img1 = document.getElementById('img1');
         const img2 = document.getElementById('img2');
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
 
         img1.src = data[0].url
         img2.src = data[1].url
+        btn1.onclick = () => saveFavourite(data[0].id)
+        btn2.onclick = () => saveFavourite(data[1].id)
         console.log('data')
         console.log(data)
 
@@ -38,7 +42,19 @@ async function getFavouriteMichis () {
         } else {
             data.forEach(element => {
                 element.image.url
-                console.log(element)
+                const section = document.getElementById('favouriteMichis')
+                const articule = document.createElement('article')
+                const img = document.createElement('img')
+                const btn = document.createElement('button')
+                const btnText = document.createTextNode('sacar al michi de favoritos')
+
+                btn.appendChild(btnText)
+                img.src = element.image.url
+                img.width = '150'
+                articule.appendChild(img)
+                articule.appendChild(btn)
+
+                section.appendChild(articule)
             });
         }
         console.log("🐱 Favoritos obtenidos:", data);
@@ -47,7 +63,7 @@ async function getFavouriteMichis () {
     }
 }
 
-async function saveFavourite() {
+async function saveFavourite(id) {
     const res = await fetch(API_URL_FAVORITES, {
         method: 'POST', 
         headers: {
@@ -55,7 +71,7 @@ async function saveFavourite() {
             "X-API-KEY": 'live_1344OCleEw0ckKke6F79UQySZeZSYxzGwz9kJ2krCRhoC4kGq1rjBkJRo9crGDQj'
         },
         body: JSON.stringify({
-            image_id: '33q'
+            image_id: id
         })
     })
     const data = await res.json();
@@ -69,7 +85,3 @@ async function saveFavourite() {
 }
    
 getFavouriteMichis()
-const btn1 = document.getElementById('btn1')
-btn1.addEventListener('click', () => {
-    saveFavourite()
-})
