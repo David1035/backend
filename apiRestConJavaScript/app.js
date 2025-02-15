@@ -18,3 +18,21 @@ alcancia()
 alcancia(25)
 alcancia(125)
 alcancia(125)
+
+
+function contarSegundos(horaInicio) {
+    return function contador(horaFinal) {
+        const diferencia = (horaFinal - horaInicio) /1000;
+        return `La diferencia en segundos es ${diferencia.toFixed()}`;
+    }
+}
+
+const inicio = new Date().getTime()
+const realizarCalculoDiferenciaSegundos = contarSegundos(inicio)
+
+let tiempo = 0;
+setTimeout(()=> {
+    const fin = new Date().getTime()
+    tiempo = realizarCalculoDiferenciaSegundos(fin)
+    console.log(tiempo)
+}, 7000)
