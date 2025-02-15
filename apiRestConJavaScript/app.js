@@ -14,25 +14,25 @@ function dinerLocal() {
 
 const alcancia = dinerLocal()
 
-alcancia()
 alcancia(25)
-alcancia(125)
 alcancia(125)
 
 
 function contarSegundos(horaInicio) {
     return function contador(horaFinal) {
         const diferencia = (horaFinal - horaInicio) /1000;
-        return `La diferencia en segundos es ${diferencia.toFixed()}`;
+        return `La diferencia en segundos es ${diferencia.toFixed(0)}`;
     }
 }
 
 const inicio = new Date().getTime()
 const realizarCalculoDiferenciaSegundos = contarSegundos(inicio)
 
-let tiempo = 0;
 setTimeout(()=> {
     const fin = new Date().getTime()
-    tiempo = realizarCalculoDiferenciaSegundos(fin)
-    console.log(tiempo)
+    console.log(realizarCalculoDiferenciaSegundos(fin))
 }, 7000)
+
+
+
+
