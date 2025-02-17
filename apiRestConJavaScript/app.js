@@ -30,8 +30,10 @@ const realizarCalculoDiferenciaSegundos = contarSegundos(inicio)
 
 setTimeout(()=> {
     const fin = new Date().getTime()
-    console.log(realizarCalculoDiferenciaSegundos(fin))
-}, 7000)
+    let nuevaHora = fin + 98000;
+    console.log(`Nueva hora: ${nuevaHora}`)
+    console.log(realizarCalculoDiferenciaSegundos(nuevaHora))
+}, 1000)
 
 
 
