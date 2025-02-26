@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Navegación - Quantix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFE6C7;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .map {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .section {
+            background: #FF8C42;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+        .sub-section {
+            background: #FFD8B1;
+            color: black;
+            padding: 8px 16px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: normal;
+            text-align: center;
+            min-width: 180px;
+            position: relative;
+        }
+        .line {
+            width: 2px;
+            background: #333;
+            height: 20px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mapa de Navegación - Quantix</h2>
+        <div class="map">
+            <div>
+                <div class="section">Inicio</div>
+                <div class="line"></div>
+                <div class="sub-section">Login</div>
+                <div class="line"></div>
+                <div class="sub-section">Registro</div>
+            </div>
+            <div>
+                <div class="section">Panel de Administración</div>
+                <div class="line"></div>
+                <div class="sub-section">Gestión de Usuarios</div>
+                <div class="sub-section">Gestión de Inventario</div>
+                <div class="sub-section">Gestión de Ventas</div>
+                <div class="sub-section">Gestión de Créditos</div>
+            </div>
+            <div>
+                <div class="section">Panel de Vendedor</div>
+                <div class="line"></div>
+                <div class="sub-section">Registrar Venta</div>
+                <div class="sub-section">Consultar Inventario</div>
+                <div class="sub-section">Aprobar Crédito</div>
+                <div class="sub-section">Vender sin Registro</div>
+            </div>
+            <div>
+                <div class="section">Configuraciones</div>
+                <div class="line"></div>
+                <div class="sub-section">Editar Perfil</div>
+                <div class="sub-section">Cambiar Contraseña</div>
+                <div class="sub-section">Gestión de Permisos</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

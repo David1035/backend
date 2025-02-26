@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error de Inicio de Sesión - Quantix</title>
+    <style>
+        :root {
+            --primary-color: #1E3A56;
+            --secondary-color: #D7EAF4;
+            --error-color: #E76F51;
+            --text-color: #FFFFFF;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .error-container {
+            background: white;
+            color: black;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: var(--error-color);
+        }
+
+        p {
+            color: var(--error-color);
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #14293B;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h2>Error de Inicio de Sesión</h2>
+        <p>Has ingresado varias veces credenciales incorrectas.</p>
+        <p>Para recuperar tu cuenta, haz clic en el botón de abajo.</p>
+        <button onclick="recoverPassword()">Recuperar Contraseña</button>
+    </div>
+
+    <script>
+        function recoverPassword() {
+            alert("Redirigiendo a la recuperación de contraseña...");
+            window.location.href = "recuperar_contraseña.html";
+        }
+    </script>
+</body>
+</html>
