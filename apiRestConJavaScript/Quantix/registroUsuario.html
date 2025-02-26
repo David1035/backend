@@ -45,6 +45,13 @@
             background-color: var(--secondary-color);
             outline: none;
         }
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-top: 10px;
+            color: var(--primary-color);
+        }
 
         button {
             background-color: var(--primary-color);
@@ -74,6 +81,7 @@
         <input type="text" id="firstname" placeholder="Nombres">
         <input type="text" id="lastname" placeholder="Apellidos">
         <input type="text" id="cedula" placeholder="Cédula">
+        <label for="birthdate">Fecha de nacimiento</label>
         <input type="date" id="birthdate" placeholder="Fecha de Nacimiento">
         <input type="email" id="email" placeholder="Correo Electrónico">
         <input type="text" id="username" placeholder="Usuario">
