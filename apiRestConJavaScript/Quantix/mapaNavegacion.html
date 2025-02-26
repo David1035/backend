@@ -28,6 +28,7 @@
             justify-content: center;
             gap: 40px;
             margin-top: 20px;
+            position: relative;
         }
         .section {
             background: #FF8C42;
@@ -37,6 +38,7 @@
             font-weight: bold;
             text-align: center;
             min-width: 200px;
+            position: relative;
         }
         .sub-section {
             background: #FFD8B1;
@@ -47,6 +49,13 @@
             font-weight: normal;
             text-align: center;
             min-width: 180px;
+            position: relative;
+        }
+        .line {
+            width: 2px;
+            background: #333;
+            height: 20px;
+            margin: auto;
         }
     </style>
 </head>
@@ -56,11 +65,14 @@
         <div class="map">
             <div>
                 <div class="section">Inicio</div>
+                <div class="line"></div>
                 <div class="sub-section">Login</div>
+                <div class="line"></div>
                 <div class="sub-section">Registro</div>
             </div>
             <div>
                 <div class="section">Panel de Administración</div>
+                <div class="line"></div>
                 <div class="sub-section">Gestión de Usuarios</div>
                 <div class="sub-section">Gestión de Inventario</div>
                 <div class="sub-section">Gestión de Ventas</div>
@@ -68,6 +80,7 @@
             </div>
             <div>
                 <div class="section">Panel de Vendedor</div>
+                <div class="line"></div>
                 <div class="sub-section">Registrar Venta</div>
                 <div class="sub-section">Consultar Inventario</div>
                 <div class="sub-section">Aprobar Crédito</div>
@@ -75,6 +88,7 @@
             </div>
             <div>
                 <div class="section">Configuraciones</div>
+                <div class="line"></div>
                 <div class="sub-section">Editar Perfil</div>
                 <div class="sub-section">Cambiar Contraseña</div>
                 <div class="sub-section">Gestión de Permisos</div>
