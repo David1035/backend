@@ -3,6 +3,7 @@
 class myElement extends HTMLElement {
     constructor(){
         super();
+        this.attachShadow({ node: "open" }) // se debe tener abierto
 
     }
     getTemplate() {
@@ -29,7 +30,7 @@ class myElement extends HTMLElement {
         `;
     }
     render(){
-        this.appendChild(this.getTemplate().content.cloneNode(true)) // el true significa que clona todos los elementos anidados
+        this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true)) // el true significa que clona todos los elementos anidados
     }
     connectedCallback() {
         this.render();
