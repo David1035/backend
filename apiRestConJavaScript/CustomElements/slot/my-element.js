@@ -11,8 +11,13 @@ class myElement extends HTMLElement {
         template.innerHTML = `
         <section>
             <h2>
-                <slot></slot>
+                <slot name="title"></slot>
             </h2>
+            <div>
+                <p>
+                    <slot name="parrafo"></slot>
+                </p>
+            </div>
         </section>
         ${this.getStyles()}
         `;
@@ -27,7 +32,7 @@ class myElement extends HTMLElement {
                 }
             </style>
         `;
-    }
+    } [``]
     render(){
         this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true)) // el true significa que clona todos los elementos anidados
     }
