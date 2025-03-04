@@ -2,7 +2,7 @@ function asincrona(callback) {
     setTimeout(function() {
         try {
             let a = 3 + z;
-            cancelIdleCallback(null, a)
+            callback(null, a)
         } catch (e) {
             callback(e)
         }
@@ -13,5 +13,8 @@ asincrona(function(err, dato) {
     if(err) {
         console.error('tenemos un error', err)
         return false;
+        //throw err; NO VA A FUNCIONAR 
+    } else {
+        console.log('todo ha ido bien, mi data es ', dato)
     }
 })

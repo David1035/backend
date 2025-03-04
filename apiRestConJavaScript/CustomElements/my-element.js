@@ -6,6 +6,7 @@ class myElement extends HTMLElement {
         this.attachShadow({ node: "open" }) // se debe tener abierto
 
     }
+
     getTemplate() {
         const template = document.createElement("template");
         template.innerHTML = `

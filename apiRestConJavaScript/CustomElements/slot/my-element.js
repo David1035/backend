@@ -6,6 +6,19 @@ class myElement extends HTMLElement {
         this.attachShadow({ node: "open" }) // se debe tener abierto
 
     }
+    static get observedAttibutes() {
+        return ['title', 'parrafo', 'img']
+    }
+
+    attributeChangedCallback(attr, oldVal, newVal) {
+        if(attr === 'title'){
+            this.title = newVal; 
+        } else if(attr === 'parrafo'){
+            this.parrafo = newVal;
+        } else if(attr === 'img'){
+            this.img = newVal
+        }
+    }
     getTemplate() {
         const template = document.createElement("template");
         template.innerHTML = `
@@ -27,6 +40,12 @@ class myElement extends HTMLElement {
     getStyles(){
         return `
             <style>
+                :host {
+                    display:inline-block;
+                    width: 100%;
+                    min-width: 450px;
+
+                }
                 h2 {
                     color: red;
                 }
