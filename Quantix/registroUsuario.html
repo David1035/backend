@@ -3,111 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuario - Quantix</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background-color: #1E3A56;
-        }
-        .container {
-            display: flex;
-            width: 800px;
-            height: 600px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .form-section {
-            width: 50%;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .form-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #1E3A56;
-        }
-        .form-section input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #1E3A56;
-            border-radius: 4px;
-        }
-        .form-section label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
-        .form-section button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1E3A56;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .form-section button:hover {
-            background-color: #14293B;
-        }
-        .image-section {
-            width: 50%;
-            background: url('https://source.unsplash.com/400x450/?technology') no-repeat center;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .overlay {
-            background: rgba(0, 0, 0, 0.4);
-            width: 80%;
-            height: 70%;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 18px;
-            padding: 20px;
-        }
-    </style>
+    <title>Registro de Usuario</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="form-section">
-            <h2>Registro de Usuario</h2>
-            <input type="text" placeholder="Nombres">
-            <input type="text" placeholder="Apellidos">
-            <input type="text" placeholder="Cédula">
-            <label for="birthdate">Fecha de nacimiento</label>
-            <input type="date" id="birthdate">
-            <input type="email" placeholder="Correo Electrónico">
-            <input type="text" placeholder="Usuario">
-            <input type="password" placeholder="Contraseña">
-            <button>Registrarse</button>
-        </div>
-        <div class="image-section">
-            <div class="overlay">
-                <h3>Sistema de Inventario Quantix</h3>
-                <p>Optimiza tu gestión de stock con tecnología avanzada.</p>
-                <p>Quí va el logo</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <!-- Sección Logo -->
+        <div class="w-full md:w-1/2 bg-blue-900 text-white flex flex-col justify-center items-center p-8">
+            <h2 class="text-2xl font-bold">Sistema de Inventario</h2>
+            <p class="mt-4 text-center">Optimiza tu gestión de inventario con tecnología avanzada.</p>
+            <div class="mt-6 w-24 h-24 bg-white rounded-full flex items-center justify-center">
+                <span class="text-blue-900 font-bold text-lg">LOGO</span>
             </div>
+        </div>
+        
+        <!-- Sección Formulario -->
+        <div class="w-full md:w-1/2 p-8">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Registro de Usuario</h2>
+            <form action="#" method="POST" class="space-y-4">
+                <input type="text" placeholder="Nombres" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="text" placeholder="Apellidos" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="text" placeholder="Cédula" class="w-full p-3 border border-gray-300 rounded-lg">
+                <label class="font-bold block">Fecha de nacimiento</label>
+                <input type="date" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="email" placeholder="Correo Electrónico" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="text" placeholder="Usuario" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="password" placeholder="Contraseña" class="w-full p-3 border border-gray-300 rounded-lg">
+                <input type="password" placeholder="Confirmar contraseña" class="w-full p-3 border border-gray-300 rounded-lg">
+                <button class="w-full bg-blue-900 text-white py-3 rounded-lg hover:bg-blue-700">Registrarse</button>
+            </form>
+            <p class="text-center mt-4 text-gray-600">¿Ya tienes cuenta? <a href="login.html" class="text-blue-900 font-bold hover:underline">Inicia sesión</a></p>
         </div>
     </div>
 </body>

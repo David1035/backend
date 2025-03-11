@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex h-screen">
+    
+    <!-- Sidebar -->
+    <aside class="w-1/5 bg-gray-900 text-white p-5">
+        <h1 class="text-xl font-bold mb-5">Sistema de Inventario</h1>
+        <nav>
+            <ul>
+                <li class="mb-3 p-2 rounded bg-gray-700">Inicio</li>
+                <li class="mb-3 p-2 rounded hover:bg-gray-700 cursor-pointer">Agregar Producto</li>
+                <li class="mb-3 p-2 rounded hover:bg-gray-700 cursor-pointer">Modificar Producto</li>
+                <li class="mb-3 p-2 rounded hover:bg-gray-700 cursor-pointer">Eliminar Producto</li>
+                <li class="mb-3 p-2 rounded hover:bg-gray-700 cursor-pointer">Reportes</li>
+                <li class="mt-10 p-2 bg-red-500 text-center rounded cursor-pointer">Salir</li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 p-10">
+        <h2 class="text-3xl font-bold mb-5">Informes</h2>
+
+        <!-- Filtro y Búsqueda -->
+        <div class="flex justify-between items-center mb-5">
+            <input type="text" placeholder="Buscar..." class="p-2 border rounded w-1/3">
+            <div>
+                <label class="mr-2 text-gray-700">Seleccionar rango de fecha:</label>
+                <input type="date" class="p-2 border rounded">
+                <span class="mx-2"> - </span>
+                <input type="date" class="p-2 border rounded">
+            </div>
+        </div>
+
+        <!-- Tabla de Informes -->
+        <div class="bg-white p-4 rounded-lg shadow-lg">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="p-3 border">#</th>
+                        <th class="p-3 border">ID</th>
+                        <th class="p-3 border">Categoría</th>
+                        <th class="p-3 border">Bodega</th>
+                        <th class="p-3 border">Fecha de Entrada</th>
+                        <th class="p-3 border">Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-100">
+                        <td class="p-3 border">1</td>
+                        <td class="p-3 border">001</td>
+                        <td class="p-3 border">Aseo</td>
+                        <td class="p-3 border">Bodega 1</td>
+                        <td class="p-3 border">2024-07-19</td>
+                        <td class="p-3 border text-center">
+                            <button class="p-2 bg-blue-500 text-white rounded">📄</button>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-gray-100">
+                        <td class="p-3 border">2</td>
+                        <td class="p-3 border">002</td>
+                        <td class="p-3 border">Arroz</td>
+                        <td class="p-3 border">Bodega 2</td>
+                        <td class="p-3 border">2024-07-02</td>
+                        <td class="p-3 border text-center">
+                            <button class="p-2 bg-blue-500 text-white rounded">📄</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botón de Descargar Reporte -->
+        <div class="mt-6">
+            <button class="bg-blue-600 text-white p-3 rounded-lg flex items-center">
+                Descargar Reporte
+                <span class="ml-2">⬇️</span>
+            </button>
+        </div>
+    </main>
+
+</body>
+</html>

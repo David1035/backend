@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo ::slotted</title>
+</head>
+<body>
+    <!-- Usamos el Web Component -->
+    <mi-componente>
+        <h2 slot="titulo">Título desde el Light DOM</h2>
+        <p slot="contenido">Este es un párrafo que entra en el slot de contenido.</p>
+        <p slot="contenido">Este parrajo es David</p>
+        <button slot="boton">Clic aquí</button>
+    </mi-componente>
+
+    <script>
+        class MiComponente extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: "open" });
+
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        /* Estilos dentro del Shadow DOM */
+                        section {
+                            border: 2px solid #3498db;
+                            padding: 15px;
+                            border-radius: 10px;
+                            text-align: center;
+                            max-width: 300px;
+                            margin: auto;
+                        }
+
+                        /* Estilos específicos para los elementos slotted */
+                        ::slotted(h2) {
+                            color: #e74c3c;
+                            font-size: 1.5em;
+                        }
+
+                        ::slotted(p) {
+                            font-style: italic;
+                            color: #2c3e50;
+                        }
+
+                        ::slotted(button) {
+                            background: #2ecc71;
+                            color: white;
+                            border: none;
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                        }
+
+                        ::slotted(button:hover) {
+                            background: #27ae60;
+                        }
+                    </style>
+
+                    <section>
+                        <slot name="titulo"></slot>
+                        <slot name="contenido"></slot>
+                        <slot name="boton"></slot>
+                    </section>
+                `;
+            }
+        }
+
+        customElements.define("mi-componente", MiComponente);
+    </script>
+</body>
+</html>
