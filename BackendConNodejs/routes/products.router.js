@@ -21,12 +21,30 @@ router.get('/', (req, res) => {
   res.json(productos)
 })
 
+
+
 router.post('/', (req, res) => {
   const body = req.body;
   res.json({ message: "created",
     data: body
   })
 })
+
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  res.json({ message: "created",
+    data: body,
+    id,
+  })
+})
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  res.json({ message: "Delete",
+    id,
+  })
+})
+
 
 module.exports = router;
 
