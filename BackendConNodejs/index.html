@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid en HTML</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <div class="mermaid">
+      graph TD;
+      Inicio[Inicio] -->|Acceso| Login[Login]
+      Login -->|Registro nuevo| Registro[Registro]
+      Login -->|Ingresar| Dashboard[Dashboard]
+
+      Dashboard -->|Gestión de Productos| GestionProductos[Gestión de Productos]
+      Dashboard -->|Informes y Reportes| Reportes[Reportes]
+      Dashboard -->|Configuración| Configuracion[Configuración]
+
+      GestionProductos -->|Agregar Producto| AgregarProducto[Agregar Producto]
+      GestionProductos -->|Modificar Producto| ModificarProducto[Modificar Producto]
+      GestionProductos -->|Eliminar Producto| EliminarProducto[Eliminar Producto]
+
+      AgregarProducto -->|Volver a Dashboard| Dashboard
+      ModificarProducto -->|Volver a Dashboard| Dashboard
+      EliminarProducto -->|Volver a Dashboard| Dashboard
+
+      Reportes -->|Generar Informe| GenerarInforme[Generar Informe]
+      Reportes -->|Historial de Movimientos| HistorialMovimientos[Historial de Movimientos]
+      Reportes -->|Volver a Dashboard| Dashboard
+
+      Configuracion -->|Perfil de Usuario| PerfilUsuario[Perfil de Usuario]
+      Configuracion -->|Preferencias| Preferencias[Preferencias]
+      Configuracion -->|Cerrar Sesión| CerrarSesion[Cerrar Sesión]
+
+      PerfilUsuario -->|Volver a Configuración| Configuracion
+      Preferencias -->|Volver a Configuración| Configuracion
+    </div>
+</body>
+</html>
