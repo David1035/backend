@@ -6,20 +6,20 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 const { tr, el } = require('@faker-js/faker');
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 app.use(express.json())
 const whiteList = ['http://localhost:8080', 'https://myApp.com']
 const options = {
   origin: (origin, callback) => {
-    if(whiteList.includes(origin)){
+    if(whiteList.includes(origin) || !origin){
       callback(null, true)
     } else {
       callback (new Error('No permitido'))
     }
   }
 }
-app.use(cors(options)) // acepta cualquier dominio.
+app.use(cors(options)) // primero valida antes de aceptar
 
 
 routerApi(app)
